@@ -1,5 +1,6 @@
 from game.board import Board
 from game.player import Player
+from utils.helpers import display_game_history
 
 def main():
     # Initialize game components
@@ -36,6 +37,7 @@ def main():
             print("\nFinal board:")
             board.display()
             print(f"\nCongratulations! {current_player.name} wins!")
+            current_player.increment_wins()
             break
             
         # Check for draw
@@ -47,6 +49,14 @@ def main():
             
         # Switch players
         current_player = player2 if current_player == player1 else player1
+
+    # Display game history
+    display_game_history()
+    
+    # Ask to play again
+    play_again = input("\nPlay again? (y/n): ").lower()
+    if play_again != 'y':
+        return
 
 if __name__ == "__main__":
     main()
